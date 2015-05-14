@@ -2,18 +2,20 @@
  * Created by tykayn on 14/05/15.
  */
 var gulp = require("gulp"),
-  gutil = require("gulp-util"),
-  plumber = require("gulp-plumber"),
-  myth = require("gulp-myth"),
-  csso = require("gulp-csso"),
-  coffee = require("gulp-coffee"),
-  options = require("minimist")(process.argv.slice(2)),
-  sass = require('gulp-sass'),
-  browserSync = require('browser-sync'),
-  reload = browserSync.reload,
-  karma = require('karma').server,
-  documentation = require('documentation');
-    
+    gutil = require("gulp-util"),
+    plumber = require("gulp-plumber"),
+    myth = require("gulp-myth"),
+    csso = require("gulp-csso"),
+    coffee = require("gulp-coffee"),
+    options = require("minimist")(process.argv.slice(2)),
+    sass = require('gulp-sass'),
+    browserSync = require('browser-sync'),
+    reload = browserSync.reload,
+    karma = require('karma').server,
+    documentation = require('documentation'),
+    jslint = require('gulp-jslint-simple'),
+    jsdoc = require("gulp-jsdoc");
+var uglify = require('gulp-uglify');
 var testFiles = [
     'dist/js/main.js'
 ];
@@ -37,17 +39,18 @@ gulp.task('tdd', function (done) {
     }, done);
 });
 
-var sources ={
+var sources = {
     tests: "src/tests/*.js",
-    sass : "src/sass/*.scss",
-    html : "src/html/*.html",
-    coffee : "src/coffee/*.coffee"
+    sass: "src/sass/*.scss",
+    html: "src/html/*.html",
+    js: "src/scripts/*.js",
+    coffee: "src/coffee/*.coffee"
 };
-var destinations ={
-    sass : "dist/css/",
-    html : "dist/html/",
-    coffee : "dist/coffee/",
-    doc : "dist/doc/"
+var destinations = {
+    sass: "dist/css/",
+    html: "dist/html/",
+    coffee: "dist/coffee/",
+    doc: "dist/doc/"
 };
 
 gulp.task("styles", function () {
@@ -88,22 +91,38 @@ gulp.task("coffee2js", function () {
         .pipe(coffee())
         .pipe(plumber())
         .pipe(gulp.dest("./dist/js/"))
+        .pipe(uglify())
         .pipe(reload({stream: true}));
     console.log("coffee was served");
 });
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     gulp.watch(sources.tests, ['test']);
     gulp.watch(sources.sass, ['sass2css']);
     gulp.watch(sources.html, ['html']);
-    gulp.watch(sources.coffee, ['coffee2js']);
+    gulp.watch(sources.coffee, ['coffee2js','doc']);
+    gulp.watch(sources.js, ['doc']);
 
 });
-var jsdoc = require("gulp-jsdoc");
+
+gulp.task('lint', function () {
+    gulp.src('./src/*.js')
+        .pipe(jslint.run({
+            // project-wide JSLint options
+            node: true,
+            vars: true
+        }))
+        .pipe(jslint.report({
+            // example of using a JSHint reporter
+            reporter: require('jshint-stylish').reporter
+        }));
+});
+
+
 gulp.task('doc', function () {
     gulp.src('./dist/js/essai.js')
-        .pipe(jsdoc(destinations.doc+'doc/main-documentation'))
+        .pipe(jsdoc(destinations.doc + 'doc/main-documentation'))
 
 });
-gulp.task("default", ["coffee2js", "sass2css", "html", "browser-sync", "watch", "tdd", "doc"], function () {
+gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "browser-sync", "watch", "tdd", "doc"], function () {
     console.log("spartiiiii");
 });

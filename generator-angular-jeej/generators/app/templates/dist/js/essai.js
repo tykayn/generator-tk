@@ -5,7 +5,7 @@ var truc = {
 
 forEach : function(){
     return "mwaip";
-}
+},
 /**
  * ne fait rien
  * @param ouais
