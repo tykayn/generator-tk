@@ -46,14 +46,7 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('NOPE_package.json'),
                 this.destinationPath('package.json')
             );
-            this.fs.copy(
-                this.templatePath('_bower.json'),
-                this.destinationPath('bower.json')
-            );
-            this.fs.copy(
-                this.templatePath('.bowerrc'),
-                this.destinationPath('.bowerrc')
-            );
+
             this.fs.copy(
                 this.templatePath('../../../README.md'),
                 this.destinationPath('README.md')
@@ -73,6 +66,10 @@ module.exports = yeoman.generators.Base.extend({
             this.fs.copy(
                 this.templatePath('src/scripts'),
                 this.destinationPath('src/scripts')
+            );
+            this.fs.copy(
+                this.templatePath('src/tests'),
+                this.destinationPath('src/tests')
             );
             this.fs.copy(
                 this.templatePath('src/html/tpl'),
@@ -101,6 +98,14 @@ module.exports = yeoman.generators.Base.extend({
         },
 
         projectfiles: function () {
+            this.fs.copy(
+                this.templatePath('_bower.json'),
+                this.destinationPath('bower.json')
+            );
+            this.fs.copy(
+                this.templatePath('.bowerrc'),
+                this.destinationPath('.bowerrc')
+            );
             this.fs.copy(
                 this.templatePath('editorconfig'),
                 this.destinationPath('.editorconfig')

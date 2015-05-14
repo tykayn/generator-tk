@@ -105,7 +105,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('lint', function () {
-    gulp.src('./src/*.js')
+    gulp.src(sources.js)
         .pipe(jslint.run({
             // project-wide JSLint options
             node: true,
@@ -119,9 +119,9 @@ gulp.task('lint', function () {
 
 
 gulp.task('doc', function () {
-    gulp.src('./dist/js/essai.js')
+    gulp.src(sources.js)
         .pipe(jsdoc(destinations.doc + 'doc/main-documentation'))
-
+        .pipe(reload({stream: true}));
 });
 gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "browser-sync", "watch", "tdd", "doc"], function () {
     console.log("spartiiiii");
