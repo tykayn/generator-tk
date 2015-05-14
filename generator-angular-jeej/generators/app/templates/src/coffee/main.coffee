@@ -1,5 +1,6 @@
 # main module
-angular.module "myApp", ["myService"]
+angular.module "myApp", []
   .controller "MainCtrl", ($rootScope, $scope)->
-    console.log('MainCtrl launched')
-    console.log('impressig!')
+#    console.log('MainCtrl launched')
+    $scope.demo = 'WOHOOO';
+#    console.log('impressig!')

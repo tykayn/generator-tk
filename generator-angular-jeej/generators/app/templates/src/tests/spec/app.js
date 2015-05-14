@@ -16,7 +16,7 @@ describe('Controller: MainCtrl', function() {
     beforeEach(module('myApp'));
 
     var MainCtrl, scope;
-
+    scope =1;
     // Initialize the controller and a mock scope
     beforeEach(inject(function($controller, $rootScope) {
         scope = $rootScope.$new();
@@ -25,8 +25,14 @@ describe('Controller: MainCtrl', function() {
         });
     }));
 
+    it('should have modules working', function() {
+        expect(module).toBeTruthy();
+    });
+    it('should have a main controller existing', function() {
+        expect(MainCtrl).toBeTruthy();
+    });
     it('should have a scope existing', function() {
-        expect(scope).toExist(); // 7 with a start from 0
+        expect(scope).toBeTruthy();
     });
 
 });

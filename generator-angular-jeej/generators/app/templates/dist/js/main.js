@@ -1,7 +1,6 @@
 (function() {
-  angular.module("myApp", ["myService"]).controller("MainCtrl", function($rootScope, $scope) {
-    console.log('MainCtrl launched');
-    return console.log('impressig!');
+  angular.module("myApp", []).controller("MainCtrl", function($rootScope, $scope) {
+    return $scope.demo = 'WOHOOO';
   });
 
 }).call(this);
