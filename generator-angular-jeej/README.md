@@ -23,6 +23,9 @@ http://localhost:3002/
 
 ### Todo's
 
+ - gulp making documentation
+ - make angular work
+ - make tests work
  - Write Tests
  
 ## made with the  [Yeoman](http://yeoman.io) generator

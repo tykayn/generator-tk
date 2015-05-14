@@ -32,6 +32,7 @@
     "minimist": "^1.1.1"
   },
   "devDependencies": {
+    "gulp-documentation" :"1.0.1",
     "mocha": "~1.17.1",
     "gulp-coffee": "~2.2.0",
     "karma": "~0.12.28",
@@ -48,7 +49,9 @@
     "chalk": "^1.0.0",
     "coffee-script": "^1.9.2",
     "gulp": "^3.8.11",
+    "gulp-karma": "0.0.4",
     "gulp-plumber": "^1.0.0",
+    "gulp-documentation": "^1.0.1",
     "jasmine": "^2.3.1",
     "yeoman-generator": "~0.19.2",
     "yosay": "^1.0.2"

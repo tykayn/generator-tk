@@ -1,20 +1,21 @@
 /**
  * Created by tykayn on 14/05/15.
  */
-var gulp = require("gulp");
-var gutil = require("gulp-util");
-var plumber = require("gulp-plumber");
-var myth = require("gulp-myth");
-var csso = require("gulp-csso");
-var coffee = require("gulp-coffee");
-var options = require("minimist")(process.argv.slice(2));
-var sass = require('gulp-sass');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var karma = require('karma').server;
-
+var gulp = require("gulp"),
+  gutil = require("gulp-util"),
+  plumber = require("gulp-plumber"),
+  myth = require("gulp-myth"),
+  csso = require("gulp-csso"),
+  coffee = require("gulp-coffee"),
+  options = require("minimist")(process.argv.slice(2)),
+  sass = require('gulp-sass'),
+  browserSync = require('browser-sync'),
+  reload = browserSync.reload,
+  karma = require('karma').server,
+  documentation = require('documentation');
+    
 var testFiles = [
-    'dist/js/play.js'
+    'dist/js/main.js'
 ];
 
 /**
@@ -86,7 +87,7 @@ gulp.task("coffee2js", function () {
         .pipe(coffee())
         .pipe(plumber())
         .pipe(gulp.dest("./dist/js/"))
-        .pipe(reload({stream: true}))
+        .pipe(reload({stream: true}));
     console.log("coffee was served");
 });
 gulp.task('watch', function() {
@@ -96,6 +97,13 @@ gulp.task('watch', function() {
     gulp.watch(sources.coffee, ['coffee2js']);
 
 });
-gulp.task("default", ["coffee2js", "sass2css", "html", "browser-sync", "watch", "tdd"], function () {
+gulp.task('documentation', function () {
+
+    gulp.src('./dist/js/main.js')
+        .pipe(documentation({ format: 'html' }))
+        .pipe(gulp.dest(destinations+'doc/main-documentation'));
+
+});
+gulp.task("default", ["coffee2js", "sass2css", "html", "browser-sync", "watch", "tdd", "documentation"], function () {
     console.log("spartiiiii");
 });
