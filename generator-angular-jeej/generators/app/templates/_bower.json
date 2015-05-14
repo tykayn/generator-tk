@@ -1,6 +1,6 @@
 {
   "name": "package",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "font-awesome": "~4.3.0",
     "bootstrap": "~3.3.4"

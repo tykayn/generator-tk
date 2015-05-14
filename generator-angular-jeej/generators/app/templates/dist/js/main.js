@@ -1,5 +1,5 @@
 (function() {
-  angular.module("myApp").controller("MainController", function($rootScope, $scope) {
+  angular.module("myApp", ["myService"]).controller("MainController", function($rootScope, $scope) {
     return console.log('MainController launched');
   });
 

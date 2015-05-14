@@ -73,6 +73,7 @@ gulp.task("html", function () {
         .pipe(reload({stream: true}));
 });
 gulp.task("sass2css", function () {
+    console.log("style was changed");
     gulp.src("./src/sass/*.scss")
         .pipe(sass({outputStyle: 'compressed', errLogToConsole: true}))
         .pipe(gulp.dest("./dist/css/"))
@@ -80,11 +81,13 @@ gulp.task("sass2css", function () {
         .on('error', gutil.log);
 });
 gulp.task("coffee2js", function () {
-    gulp.src("./src/coffee/*.coffee")
+    console.log("coffee was changed");
+    gulp.src("./src/coffee/**/*.coffee")
         .pipe(coffee())
         .pipe(plumber())
         .pipe(gulp.dest("./dist/js/"))
         .pipe(reload({stream: true}))
+    console.log("coffee was served");
 });
 gulp.task('watch', function() {
     gulp.watch(sources.tests, ['test']);
