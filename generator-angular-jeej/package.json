@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-jeej",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -17,7 +17,12 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "Gulp", "Angular", "coffeescript",
+    "jquery", "bootstrap", "font awesome",
+    "browser sync", "karma", "jasmine",
+    "jslint", "uglify", "coverall",
+    "yeoman", "tykayn"
   ],
   "dependencies": {
     "angular": "0.0.1",
