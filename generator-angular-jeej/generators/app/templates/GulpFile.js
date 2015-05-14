@@ -46,7 +46,8 @@ var sources ={
 var destinations ={
     sass : "dist/sass/",
     html : "dist/html/",
-    coffee : "dist/coffee/"
+    coffee : "dist/coffee/",
+    doc : "dist/doc/"
 };
 
 gulp.task("styles", function () {
@@ -99,9 +100,9 @@ gulp.task('watch', function() {
 });
 gulp.task('documentation', function () {
 
-    gulp.src('./dist/js/main.js')
-        .pipe(documentation({ format: 'html' }))
-        .pipe(gulp.dest(destinations+'doc/main-documentation'));
+    gulp.src('./dist/js/essai.js')
+        .pipe(documentation({ format: 'md' }))
+        .pipe(gulp.dest(destinations.doc+'doc/main-documentation'));
 
 });
 gulp.task("default", ["coffee2js", "sass2css", "html", "browser-sync", "watch", "tdd", "documentation"], function () {
