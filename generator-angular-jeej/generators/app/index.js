@@ -21,14 +21,14 @@ module.exports = yeoman.generators.Base.extend({
                 type: 'input',
                 name: 'app_title',
                 message: 'Title for the web page?',
-                default: 'my awesome jeej, sass! harrr!',
+                default: 'my awesome app, jeej, sass! harrr too many YTP FR!',
                 store: true
             },
             {
-                type    : 'input',
-                name    : 'githubMan',
-                message : 'What\'s your Github username?',
-                store   : true
+                type: 'input',
+                name: 'githubMan',
+                message: 'What\'s your Github username?',
+                store: true
             }];
 
         this.prompt(prompts, function (props) {
@@ -72,7 +72,10 @@ module.exports = yeoman.generators.Base.extend({
             this.fs.copyTpl(
                 this.templatePath('src/html/index.html'),
                 this.destinationPath('src/html/index.html'),
-                {app_title: this.props.myTitle, githubMan : this.props.githubMan} // mon app trop bien
+                {
+                    app_title: this.props.myTitle,
+                    githubMan: this.props.githubMan
+                }
             );
         },
 
