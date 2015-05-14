@@ -6,6 +6,7 @@ var yosay = require('yosay');
 module.exports = yeoman.generators.Base.extend({
     initializing: function () {
         this.pkg = require('../../package.json');
+
     },
 
     prompting: function () {
@@ -13,9 +14,9 @@ module.exports = yeoman.generators.Base.extend({
 
         // Have Yeoman greet the user.
         this.log(yosay(
-            'Welcome to the supreme ' + chalk.red('AngularJeej') + ' generator!'
+            'Welcome to the supreme ' + chalk.red('AngularJeej') + ' generator! Aint nobody got time for that?'
         ));
-
+        this.log('let\'s build the world');
         var prompts = [
             {
                 type: 'input',
@@ -68,6 +69,18 @@ module.exports = yeoman.generators.Base.extend({
             this.fs.copy(
                 this.templatePath('src/html/tpl'),
                 this.destinationPath('src/html/tpl')
+            );
+            this.fs.copy(
+                this.templatePath('GulpFile.js'),
+                this.destinationPath('GulpFile.js')
+            );
+            this.fs.copy(
+                this.templatePath('karma.conf.js'),
+                this.destinationPath('karma.conf.js')
+            );
+            this.fs.copy(
+                this.templatePath('karma-e2e.conf.js'),
+                this.destinationPath('karma-e2e.conf.js')
             );
             this.fs.copyTpl(
                 this.templatePath('src/html/index.html'),

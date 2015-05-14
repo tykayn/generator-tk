@@ -1,5 +1,55 @@
 {
-  "name": "package",
+  "name": "generator-angular-jeej",
   "version": "0.0.0",
-  "dependencies": {}
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "tykayn/generator-angular-jeej",
+  "author": {
+    "name": "ty kayn",
+    "email": "contact@artlemoine.com",
+    "url": "https://github.com/tykayn"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "angular": "0.0.1",
+    "browser-sync": "^2.7.1",
+    "gulp-coffee": "^2.3.1",
+    "gulp-csso": "^1.0.0",
+    "gulp-myth": "^1.0.2",
+    "gulp-sass": "^2.0.1",
+    "gulp-util": "^3.0.4",
+    "jasmine": "^2.3.1",
+    "minimist": "^1.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "gulp-coffee": "~2.2.0",
+    "karma": "~0.12.28",
+    "gulp-karma": "0.0.4",
+    "jasmine-core": "~2.1.3",
+    "karma-jasmine": "~0.3.2",
+    "karma-chrome-launcher": "~0.1.7",
+    "karma-phantomjs-launcher": "~0.1.3",
+    "phantomjs": "~1.9.12",
+    "chai": "~1.9.0",
+    "sinon": "~1.8.0",
+    "istanbul": "~0.2.4",
+    "coveralls": "~2.7.1",
+    "chalk": "^1.0.0",
+    "coffee-script": "^1.9.2",
+    "gulp": "^3.8.11",
+    "gulp-plumber": "^1.0.0",
+    "jasmine": "^2.3.1",
+    "yeoman-generator": "~0.19.2",
+    "yosay": "^1.0.2"
+  }
 }
