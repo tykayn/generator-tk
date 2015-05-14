@@ -44,7 +44,7 @@ var sources ={
     coffee : "src/coffee/*.coffee"
 };
 var destinations ={
-    sass : "dist/sass/",
+    sass : "dist/css/",
     html : "dist/html/",
     coffee : "dist/coffee/",
     doc : "dist/doc/"
@@ -98,13 +98,12 @@ gulp.task('watch', function() {
     gulp.watch(sources.coffee, ['coffee2js']);
 
 });
-gulp.task('documentation', function () {
-
+var jsdoc = require("gulp-jsdoc");
+gulp.task('doc', function () {
     gulp.src('./dist/js/essai.js')
-        .pipe(documentation({ format: 'md' }))
-        .pipe(gulp.dest(destinations.doc+'doc/main-documentation'));
+        .pipe(jsdoc(destinations.doc+'doc/main-documentation'))
 
 });
-gulp.task("default", ["coffee2js", "sass2css", "html", "browser-sync", "watch", "tdd", "documentation"], function () {
+gulp.task("default", ["coffee2js", "sass2css", "html", "browser-sync", "watch", "tdd", "doc"], function () {
     console.log("spartiiiii");
 });

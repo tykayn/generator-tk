@@ -7,7 +7,7 @@
 module.exports = function(config) {
     config.set({
         // base path, that will be used to resolve files and exclude
-        basePath: '/',
+        basePath: '',
 
         // testing framework to use (jasmine/mocha/qunit/...)
         frameworks: ['jasmine'],
@@ -18,7 +18,7 @@ module.exports = function(config) {
             //'dist/js/*.js'
             //'dist/scripts/**/*.js',
             //'tests/mock/**/*.js',
-            'app/templates/src/tests/spec/*.js'
+            'src/tests/spec/*.js'
         ],
 
         // list of files / patterns to exclude
