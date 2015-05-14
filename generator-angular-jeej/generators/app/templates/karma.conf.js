@@ -20,7 +20,6 @@ module.exports = function(config) {
             'dist/js/services/*.js',
             'dist/js/essai.js',
             'dist/js/main.js',
-            'dist/js/main.js',
             'src/tests/spec/*.js'
         ],
 

@@ -11,6 +11,12 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'dist/bower_components/jquery/dist/jquery.min.js',
+            'dist/bower_components/angularjs/angular.js',
+            'dist/bower_components/angular-mocks/angular-mocks.js',
+            'dist/js/services/*.js',
+            'dist/js/essai.js',
+            'dist/js/main.js',
             'tests/e2e/**/*.js'
         ],
 
