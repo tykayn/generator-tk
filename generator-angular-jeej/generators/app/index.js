@@ -44,7 +44,7 @@ module.exports = yeoman.generators.Base.extend({
     writing: {
         app: function () {
             this.fs.copy(
-                this.templatePath(this.pkg),
+                this.templatePath('_package.json'),
                 this.destinationPath('package.json')
             );
 
