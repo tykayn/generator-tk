@@ -1,10 +1,10 @@
 {
   "name": "generator-angular-jeej",
-  "version": "0.0.2",
+  "version": "0.0.25",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "tykayn/generator-angular-jeej",
+  "repository": "tykayn/generator-tk",
   "author": {
     "name": "ty kayn",
     "email": "contact@artlemoine.com",
