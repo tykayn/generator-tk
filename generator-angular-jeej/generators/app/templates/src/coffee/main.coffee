@@ -1,5 +1,5 @@
 # main module
 angular.module "myApp", ["myService"]
-  .controller "MainController", ($rootScope, $scope)->
-    console.log('MainController launched')
+  .controller "MainCtrl", ($rootScope, $scope)->
+    console.log('MainCtrl launched')
     console.log('impressig!')
