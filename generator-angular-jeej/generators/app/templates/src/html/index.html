@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>mon app trop bien</title>
+    <title><%= app_title %></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -23,7 +23,11 @@
 <![endif]-->
 
 
-<h1>Welcommmmmmmmmmmmme</h1>
+<h1><%= app_title %></h1>
+
+<div class="author">
+    <a href="http://github.com/<%= githubMan %>"><%= githubMan %></a>
+</div>
 <!-- Add your site or application content here -->
 <div class="container" ng-view=""></div>
 

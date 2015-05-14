@@ -16,12 +16,20 @@ module.exports = yeoman.generators.Base.extend({
             'Welcome to the supreme ' + chalk.red('AngularJeej') + ' generator!'
         ));
 
-        var prompts = [{
-            type: 'confirm',
-            name: 'someOption',
-            message: 'Would you like to enable this option?',
-            default: true
-        }];
+        var prompts = [
+            {
+                type: 'input',
+                name: 'app_title',
+                message: 'Title for the web page?',
+                default: 'my awesome jeej, sass! harrr!',
+                store: true
+            },
+            {
+                type    : 'input',
+                name    : 'githubMan',
+                message : 'What\'s your Github username?',
+                store   : true
+            }];
 
         this.prompt(prompts, function (props) {
             this.props = props;
@@ -42,8 +50,29 @@ module.exports = yeoman.generators.Base.extend({
                 this.destinationPath('bower.json')
             );
             this.fs.copy(
-                this.templatePath('_bower.json'),
-                this.destinationPath('bower.json')
+                this.templatePath('dist'),
+                this.destinationPath('dist')
+            );
+            this.fs.copy(
+                this.templatePath('src/coffee'),
+                this.destinationPath('src/coffee')
+            );
+            this.fs.copy(
+                this.templatePath('src/sass'),
+                this.destinationPath('src/sass')
+            );
+            this.fs.copy(
+                this.templatePath('src/scripts'),
+                this.destinationPath('src/scripts')
+            );
+            this.fs.copy(
+                this.templatePath('src/html/tpl'),
+                this.destinationPath('src/html/tpl')
+            );
+            this.fs.copyTpl(
+                this.templatePath('src/html/index.html'),
+                this.destinationPath('src/html/index.html'),
+                {app_title: this.props.myTitle, githubMan : this.props.githubMan} // mon app trop bien
             );
         },
 
