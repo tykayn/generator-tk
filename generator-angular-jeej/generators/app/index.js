@@ -29,6 +29,7 @@ module.exports = yeoman.generators.Base.extend({
                 type: 'input',
                 name: 'githubMan',
                 message: 'What\'s your Github username?',
+                default: 'tykayn',
                 store: true
             }];
 
@@ -43,7 +44,7 @@ module.exports = yeoman.generators.Base.extend({
     writing: {
         app: function () {
             this.fs.copy(
-                this.templatePath('NOPE_package.json'),
+                this.templatePath(this.pkg),
                 this.destinationPath('package.json')
             );
 

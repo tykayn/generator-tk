@@ -23,6 +23,7 @@
     "angular": "0.0.1",
     "bootstrap": "^3.3.4",
     "browser-sync": "^2.7.1",
+    "documentation": "^1.2.0",
     "gulp-csso": "^1.0.0",
     "gulp-myth": "^1.0.2",
     "gulp-sass": "^2.0.1",
