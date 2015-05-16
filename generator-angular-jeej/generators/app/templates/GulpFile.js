@@ -16,9 +16,26 @@ var gulp = require("gulp"),
     jslint = require('gulp-jslint-simple'),
     jsdoc = require("gulp-jsdoc");
 var uglify = require('gulp-uglify');
+var istanbul = require('gulp-istanbul');
+var mocha = require('gulp-mocha');
 var testFiles = [
     'dist/js/main.js'
 ];
+
+var sources = {
+    tests: "src/tests/*.js",
+    sass: "src/sass/*.scss",
+    html: "src/html/*.html",
+    js: "src/scripts/*.js",
+    jsAll: "src/scripts/**/*.js",
+    coffee: "src/coffee/*.coffee"
+};
+var destinations = {
+    sass: "dist/css/",
+    html: "dist/html/",
+    coffee: "dist/coffee/",
+    doc: "dist/doc/"
+};
 
 /**
  * Run test once and exit
@@ -29,6 +46,20 @@ gulp.task('test', function (done) {
         singleRun: true
     }, done);
 });
+gulp.task('cover', function (done) {
+    gulp.src([sources.jsAll , sources.js])
+        .pipe(istanbul()) // Covering files
+        .pipe(gulp.dest('test-tmp/'))
+        .pipe(istanbul.hookRequire()) // Force `require` to return covered files
+        .on('finish', function () {
+            gulp.src(['test/*.js'])
+                .pipe(mocha())
+                .pipe(istanbul.writeReports()) // Creating the reports after tests runned
+                .pipe(istanbul.enforceThresholds({thresholds: {global: 20}})) // Enforce a coverage of at least 90%
+                .on('end', done);
+        });
+});
+
 
 /**
  * Watch for file changes and re-run tests on each change
@@ -39,19 +70,7 @@ gulp.task('tdd', function (done) {
     }, done);
 });
 
-var sources = {
-    tests: "src/tests/*.js",
-    sass: "src/sass/*.scss",
-    html: "src/html/*.html",
-    js: "src/scripts/*.js",
-    coffee: "src/coffee/*.coffee"
-};
-var destinations = {
-    sass: "dist/css/",
-    html: "dist/html/",
-    coffee: "dist/coffee/",
-    doc: "dist/doc/"
-};
+
 
 gulp.task("styles", function () {
     gulp.src("./src/css/*.css")
@@ -99,7 +118,7 @@ gulp.task('watch', function () {
     gulp.watch(sources.tests, ['test']);
     gulp.watch(sources.sass, ['sass2css']);
     gulp.watch(sources.html, ['html']);
-    gulp.watch(sources.coffee, ['coffee2js','doc', 'test']);
+    gulp.watch(sources.coffee, ['coffee2js', 'doc', 'test']);
     gulp.watch(sources.js, ['doc']);
 
 });

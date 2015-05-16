@@ -1,5 +1,11 @@
 # generator-angular-jeej
-status: not working by now.
+Why would you use this generator ?
+Because it gives:
+Gulp, Angular, coffeescript, jquery, bootstrap, font awesome, commitement to open source. browser sync, karma, jasmine, jslint, uglify, coverall and more.
+with some tests examples, and a sassy way to use sass.
+
+status: working by now.
+Yet there are some dependecies to make work.
 
 ## Getting Started
 you need yeoman from NPM. To install it in command line, run this:
