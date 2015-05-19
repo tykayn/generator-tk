@@ -3,7 +3,7 @@ Why would you use this generator ?
 Because it gives:
 Gulp, Angular, coffeescript, jquery, bootstrap, font awesome, commitement to open source. browser sync, karma, jasmine, jslint, uglify, coverall and more.
 with some tests examples, and a sassy way to use sass.
-
+<a href="https://nodei.co/npm/generator-angular-jeej/"><img src="https://nodei.co/npm/generator-angular-jeej.png?downloads=true&downloadRank=true&stars=true" /></a>
 status: working by now.
 Yet there are some dependecies to make work.
 
@@ -33,7 +33,7 @@ http://localhost:3002/
  - make angular work
  - make tests work
  - Write Tests
- 
+
 ## made with the  [Yeoman](http://yeoman.io) generator
 by [Tykayn](http://artlemoine.com) - [Tykayn Github](http://github.com/tykayn)
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
