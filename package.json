@@ -42,7 +42,6 @@
     "gulp-myth": "^1.0.2",
     "gulp-sass": "^2.0.1",
     "gulp-util": "^3.0.4",
-    "jshint": "^2.7.0",
     "minimist": "^1.1.1"
   },
   "devDependencies": {
