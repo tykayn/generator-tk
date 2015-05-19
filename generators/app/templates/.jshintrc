@@ -13,5 +13,11 @@
   "quotmark": "single",
   "undef": true,
   "unused": true,
+  "jquery": false,
+  "globals": {  "$": false,
+    "jQuery": false,
+    "window": false,
+    "angular": false
+  },
   "strict": true
 }

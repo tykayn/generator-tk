@@ -13,8 +13,8 @@ var gulp = require("gulp"),
     reload = browserSync.reload,
     karma = require('karma').server,
     documentation = require('documentation'),
-    jslint = require('gulp-jslint-simple'),
     jsdoc = require("gulp-jsdoc");
+var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var istanbul = require('gulp-istanbul');
 var mocha = require('gulp-mocha');
@@ -125,15 +125,8 @@ gulp.task('watch', function () {
 
 gulp.task('lint', function () {
     gulp.src(sources.js)
-        .pipe(jslint.run({
-            // project-wide JSLint options
-            node: true,
-            vars: true
-        }))
-        .pipe(jslint.report({
-            // example of using a JSHint reporter
-            reporter: require('jshint-stylish').reporter
-        }));
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'));
 });
 
 

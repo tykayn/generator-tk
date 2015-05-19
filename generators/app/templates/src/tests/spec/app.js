@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Created by tykayn on 14/05/15.
  */
@@ -8,7 +9,7 @@ describe("A suite", function () {
     });
 });
 
-'use strict';
+
 
 describe('Controller: MainCtrl', function () {
 
