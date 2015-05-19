@@ -112,7 +112,7 @@ module.exports = yeoman.generators.Base.extend({
                 this.destinationPath('.editorconfig')
             );
             this.fs.copy(
-                this.templatePath('jshintrc'),
+                this.templatePath('.jshintrc'),
                 this.destinationPath('.jshintrc')
             );
         }

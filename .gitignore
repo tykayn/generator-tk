@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
-generator-angular-jeej/node_modules/
 npm-debug.log
 .idea/
+node_modules/
+generators/app/templates/dist/bower_components/
+generators/app/templates/dist/doc
 generator-angular-jeej/generators/app/templates/test-tmp
-node_modules
