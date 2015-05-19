@@ -2,4 +2,5 @@
 generator-angular-jeej/node_modules/
 npm-debug.log
 .idea/
-
+generator-angular-jeej/generators/app/templates/test-tmp
+node_modules
