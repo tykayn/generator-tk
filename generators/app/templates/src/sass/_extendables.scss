@@ -1,0 +1,63 @@
+/**
+ use with @extend
+ % are maks of sass's placeholder selectors.
+ they are rendered only if extended.
+ for example :
+ .my-container {
+    @extend %clearfix;
+  }
+**/
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+/**
+media query mixin
+**/
+@mixin mq($size) {
+  @media only screen and (max-width: #{$size}) {
+    @content;
+  }
+}
+@mixin mq-large {
+  @media only screen and (max-width: 60em) {
+    @content;
+  }
+}
+
+@mixin mq-medium {
+  @media only screen and (max-width: 40em) {
+    @content;
+  }
+}
+
+@mixin mq-small {
+  @media only screen and (max-width: 30em) {
+    @content;
+  }
+}
+
+/**
+  hide elements in an evil way
+**/
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+.visually-hidden {
+  @extend %visuallyhidden;
+}
