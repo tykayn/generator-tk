@@ -1,6 +1,6 @@
 /**
  use with @extend
- % are maks of sass's placeholder selectors.
+ percentage sign % are maks of sass's placeholder selectors.
  they are rendered only if extended.
  for example :
  .my-container {
@@ -20,10 +20,11 @@
 
 
 /**
-media query mixin
+  to use with @include
+  media query mixin
 **/
-@mixin mq($size) {
-  @media only screen and (max-width: #{$size}) {
+@mixin mq($min : '40em',$max : '60em') {
+  @media only screen and (min-width: #{$max}) and (max-width: #{$max}) {
     @content;
   }
 }
@@ -44,6 +45,7 @@ media query mixin
     @content;
   }
 }
+
 
 /**
   hide elements in an evil way
