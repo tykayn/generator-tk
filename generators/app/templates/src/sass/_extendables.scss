@@ -17,36 +17,6 @@
     clear: both;
   }
 }
-
-
-/**
-  to use with @include
-  media query mixin
-**/
-@mixin mq($min : '40em',$max : '60em') {
-  @media only screen and (min-width: #{$max}) and (max-width: #{$max}) {
-    @content;
-  }
-}
-@mixin mq-large {
-  @media only screen and (max-width: 60em) {
-    @content;
-  }
-}
-
-@mixin mq-medium {
-  @media only screen and (max-width: 40em) {
-    @content;
-  }
-}
-
-@mixin mq-small {
-  @media only screen and (max-width: 30em) {
-    @content;
-  }
-}
-
-
 /**
   hide elements in an evil way
 **/
@@ -63,3 +33,54 @@
 .visually-hidden {
   @extend %visuallyhidden;
 }
+
+/**
+  to use with @include
+  media query mixin
+**/
+$size-lg : '60em';
+$size-md : '40em';
+$size-sm : '30em';
+
+// defaults are defined
+@mixin mq($min : '40em',$max : '60em') {
+  @media only screen and (min-width: #{$max}) and (max-width: #{$max}) {
+    @content;
+  }
+}
+@mixin mq-large {
+  @media only screen and (max-width: $size-lg) {
+    @content;
+  }
+}
+
+@mixin mq-medium {
+  @media only screen and (max-width: $size-md) {
+    @content;
+  }
+}
+
+@mixin mq-small {
+  @media only screen and (max-width: $size-sm) {
+    @content;
+  }
+}
+
+/**
+  set color and background color in one time
+**/
+@mixin color-and-bg($text, $background) {
+  color: $text;
+  background-color: $background;
+}
+
+/**
+  @while example
+
+  $i: 6;
+  @while $i > 0 {
+    .item-#{$i} { width: 2em * $i; }
+    $i: $i - 2;
+  }
+**/
+

@@ -1,5 +1,10 @@
 /**
-maps are arrays, use it ! remember the @each directive.
-$map: (key1: value1, key2: value2, key3: value3);
+  maps are arrays, use it ! remember the @each directive.
+  @each $animal in puma, sea-slug, egret, salamander {
+    .#{$animal}-icon {
+      background-image: url('/images/#{$animal}.png');
+    }
+  }
+  $map: (key1: value1, key2: value2, key3: value3);
 **/
 $my-map: (key1: value1, key2: value2, key3: value3);
