@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-jeej",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
