@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-jeej",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -42,9 +42,7 @@
     "gulp-myth": "^1.0.2",
     "gulp-sass": "^2.0.1",
     "gulp-util": "^3.0.4",
-    "minimist": "^1.1.1"
-  },
-  "devDependencies": {
+    "minimist": "^1.1.1",
     "chai": "~1.9.0",
     "chalk": "^1.0.0",
     "coffee-script": "^1.9.2",
