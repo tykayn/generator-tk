@@ -38,6 +38,14 @@ var destinations = {
   doc: "dist/doc/"
 };
 
+var imageminJpegoptim = require('imagemin-jpegoptim');
+
+gulp.task('imagemin', function () {
+  return gulp.src('images/*.jpg')
+    .pipe(imageminJpegoptim({progressive: true})())
+    .pipe(gulp.dest('dist/images'));
+});
+
 gulp.task("html", function () {
   console.log("html was changed");
   gulp.src([sources.html, sources.htmls])
@@ -133,6 +141,6 @@ gulp.task('doc', function () {
     .pipe(jsdoc(destinations.doc + 'doc/main-documentation'))
     .pipe(reload({stream: true}));
 });
-gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "browser-sync", "watch", "tdd", "doc"], function () {
+gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "browser-sync", "imagemin", "watch", "tdd", "doc"], function () {
   console.log("spartiiiii");
 });
