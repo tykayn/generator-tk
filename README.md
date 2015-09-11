@@ -26,8 +26,20 @@ Each time you will save a scss, coffee, or html, they will be compiled, concaten
 ```sh
 $ gulp
 ```
-if you did no error in these watched files, you will be able to reach your webapp on localhost.
-http://localhost:3002/
+if you did no error in these watched files, you will be able to reach your webapp (live reloading) on localhost.
+[http://localhost:3002/](http://localhost:3002/)
+
+### sub Generators
+You can run a command to build an angular controller:
+```sh
+$ yo angular-jeej:controller
+```
+Or a service
+```sh
+$ yo angular-jeej:controller
+```
+they will be created in the folder __/src/coffee__
+
 ### Troubleshooting
 
 if you have issues while running the generator, like dependencies failues, update your generators.
@@ -39,7 +51,7 @@ if you have issues while running the generator, like dependencies failues, updat
  - gulp making documentation
  - ui router to add to angluar
  - command to build a ng route
-- Write Tests
+- Write more tests
 
 ## made with the  [Yeoman](http://yeoman.io) generator
 by [Tykayn](http://artlemoine.com) - [Tykayn Github](http://github.com/tykayn)

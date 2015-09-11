@@ -25,8 +25,8 @@ module.exports = yeoman.generators.Base.extend({
       },
       {
         type   : 'input',
-        name   : 'ctrl_name',
-        message: 'name of your new controller? it should be unique',
+        name   : 'service_name',
+        message: 'name of your new service? it should be unique',
         default: 'myController',
         store  : true
       }];
@@ -41,12 +41,14 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
+      var newObjectName = this.props.service_name + '-service.coffee';
+      var newObjectPath = 'src/coffee/' + newObjectName;
       this.fs.copyTpl(
-        this.templatePath('newCtrl.coffee'),
-        this.destinationPath('src/coffee/' + this.props.ctrl_name + '.coffee'),
+        this.templatePath('newService.coffee'),
+        this.destinationPath(newObjectPath),
         {
           app_name : this.props.app_name,
-          ctrl_name: this.props.ctrl_name
+          service_name: this.props.service_name
         }
       );
     }
@@ -55,6 +57,6 @@ module.exports = yeoman.generators.Base.extend({
   install: function () {
     //this.installDependencies();
     this.log(chalk.green('wala! enjoy your new controller!'));
-    this.log(chalk.green('Dont forget to include your controller in your app\'s template!'));
+    this.log(chalk.green('Dont forget to include your service '+this.props.service_name+'-service.js in your app\'s template!'));
   }
 });
