@@ -36,6 +36,7 @@ var destinations = {
   sass: "dist/css/",
   html: "dist/",
   coffee: "dist/coffee/",
+  js: "dist/js/",
   doc: "dist/doc/"
 };
 
@@ -45,6 +46,15 @@ gulp.task('bower', function () {
       exclude: "www/lib/angular/angular.js"
     }))
     .pipe(gulp.dest(destinations.html));
+});
+gulp.task('vendor-scripts', function() {
+  return gulp.src(wiredep().js)
+    .pipe(gulp.dest(destinations.js));
+});
+
+gulp.task('vendor-css', function() {
+  return gulp.src(wiredep().css)
+    .pipe(gulp.dest(destinations.css));
 });
 
 var imageminJpegoptim = require('imagemin-jpegoptim');
