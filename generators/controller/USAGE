@@ -5,4 +5,4 @@ Example:
     yo angular-jeej:controller Thing
 
     This will create:
-        app/scripts/thing-ctrl.coffee
+        src/coffee/thing.coffee
