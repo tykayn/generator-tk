@@ -27,13 +27,13 @@ describe('Controller: MainCtrl', function () {
     }));
 
     it('should have modules working', function () {
-        expect(module).toBeTruthy();
+        expect(module).toBeDefined();
     });
     it('should have a main controller existing', function () {
-        expect(MainCtrl).toBeTruthy();
+        expect(MainCtrl).toBeDefined();
     });
     it('should have a scope existing', function () {
-        expect(scope).toBeTruthy();
+        expect(scope).toBeDefined();
     });
 
 });

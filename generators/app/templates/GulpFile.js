@@ -1,19 +1,19 @@
 /**
  * Created by tykayn on 14/05/15.
  */
-var gulp = require("gulp"),
-  gutil = require("gulp-util"),
-  plumber = require("gulp-plumber"),
-  myth = require("gulp-myth"),
-  csso = require("gulp-csso"),
-  coffee = require("gulp-coffee"),
-  options = require("minimist")(process.argv.slice(2)),
-  sass = require('gulp-sass'),
-  browserSync = require('browser-sync'),
-  reload = browserSync.reload,
-  karma = require('karma').server,
-  documentation = require('documentation'),
-  jsdoc = require("gulp-jsdoc");
+var gulp          = require("gulp"),
+    gutil         = require("gulp-util"),
+    plumber       = require("gulp-plumber"),
+    myth          = require("gulp-myth"),
+    csso          = require("gulp-csso"),
+    coffee        = require("gulp-coffee"),
+    options       = require("minimist")(process.argv.slice(2)),
+    sass          = require('gulp-sass'),
+    browserSync   = require('browser-sync'),
+    reload        = browserSync.reload,
+    karma         = require('karma').server,
+    documentation = require('documentation'),
+    jsdoc         = require("gulp-jsdoc");
 var wiredep = require('wiredep').stream;
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
@@ -24,25 +24,22 @@ var testFiles = [
 ];
 
 var sources = {
-  tests: "src/tests/*.js",
-  sass: "src/sass/*.scss",
-  html: "src/html/*.html",
-  html_wired: "src/html_wired/",
-  htmls: "src/html/**/*.html",
-  js: "src/scripts/*.js",
-  jsAll: "src/scripts/**/*.js",
-  coffee: "src/coffee/*.coffee"
+  tests    : "src/tests/*.js",
+  sass     : "src/sass/*.scss",
+  html     : "src/html/*.html",
+  htmls    : "src/html/**/*.html",
+  distIndex: "dist/index.html",
+  js       : "src/scripts/*.js",
+  jsAll    : "src/scripts/**/*.js",
+  coffee   : "src/coffee/*.coffee"
 };
 var destinations = {
-  sass: "dist/css/",
-  html: "dist/",
+  sass  : "dist/css/",
+  html  : "dist/",
   coffee: "dist/coffee/",
-  js: "dist/js/",
-  doc: "dist/doc/"
+  js    : "dist/js/",
+  doc   : "dist/doc/"
 };
-
-
-
 
 var imageminJpegoptim = require('imagemin-jpegoptim');
 
@@ -52,15 +49,13 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest('dist/images'));
 });
 
-
-
 /**
  * Run test once and exit
  */
 gulp.task('test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
-    singleRun: true
+    singleRun : true
   }, done);
 });
 gulp.task('cover', function (done) {
@@ -98,7 +93,7 @@ gulp.task("hello", function () {
 });
 gulp.task('browser-sync', function () {
   return browserSync.init(null, {
-    open: true,
+    open  : true,
     server: {
       baseDir: "./dist"
     }
@@ -125,12 +120,12 @@ gulp.task("coffee2js", function () {
 gulp.task('watch', function () {
   gulp.watch(sources.tests, ['test']);
   gulp.watch(sources.sass, ['sass2css']);
-  gulp.watch(sources.htmls, ['html','wiredep']);
+  gulp.watch('bower.json', ['wiredep']);
+  gulp.watch(sources.htmls, ['html', 'wiredep']);
   gulp.watch(sources.coffee, ['coffee2js', 'doc', 'test']);
   gulp.watch(sources.js, ['doc']);
 
 });
-
 gulp.task('lint', function () {
   gulp.src(sources.js)
     .pipe(jshint())
@@ -145,7 +140,7 @@ gulp.task('doc', function () {
 
 gulp.task("html", function () {
   console.log("html was changed");
-  gulp.src([sources.htmls,sources.html_wired])
+  gulp.src([sources.htmls, sources.html])
     .pipe(gulp.dest(destinations.html))
     .pipe(reload({stream: true}));
 });
@@ -158,11 +153,14 @@ gulp.task('bower', function () {
 });
 
 // link dependencies only on the main index
-gulp.task('wiredep', function() {
-  return gulp.src(sources.html)
-    .pipe(wiredep())
-    .pipe(gulp.dest(sources.html_wired));
+gulp.task('wiredep', function () {
+  gulp.src(sources.html)
+    .pipe(wiredep({
+      exclude: 'bower_components/angularjs'
+    }))
+    .pipe(gulp.dest(destinations.html))
+  ;
 });
-gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "wiredep", "browser-sync", "imagemin","watch", "tdd", "doc"], function () {
+gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "wiredep", "browser-sync", "imagemin", "watch", "tdd", "doc"], function () {
   console.log("spartiiiii");
 });

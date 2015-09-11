@@ -43,10 +43,6 @@ module.exports = yeoman.generators.Base.extend({
 
     writing: {
         app: function () {
-            this.fs.copy(
-                this.templatePath('_package.json'),
-                this.destinationPath('package.json')
-            );
 
             this.fs.copy(
                 this.templatePath('../../../README.md'),
@@ -88,6 +84,10 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('karma-e2e.conf.js'),
                 this.destinationPath('karma-e2e.conf.js')
             );
+            this.fs.copy(
+              this.templatePath('dist/img'),
+              this.destinationPath('dist/img')
+            );
             this.fs.copyTpl(
                 this.templatePath('src/html/index.html'),
                 this.destinationPath('src/html/index.html'),
@@ -100,8 +100,12 @@ module.exports = yeoman.generators.Base.extend({
 
         projectfiles: function () {
             this.fs.copy(
-                this.templatePath('_bower.json'),
+                this.templatePath('bower.json'),
                 this.destinationPath('bower.json')
+            );
+            this.fs.copy(
+                this.templatePath('../../../package.json'),
+                this.destinationPath('package.json')
             );
             this.fs.copy(
                 this.templatePath('.bowerrc'),
