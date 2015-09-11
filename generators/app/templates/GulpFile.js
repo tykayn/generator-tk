@@ -14,6 +14,7 @@ var gulp = require("gulp"),
   karma = require('karma').server,
   documentation = require('documentation'),
   jsdoc = require("gulp-jsdoc");
+var wiredep = require('wiredep').stream;
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var istanbul = require('gulp-istanbul');
@@ -37,6 +38,14 @@ var destinations = {
   coffee: "dist/coffee/",
   doc: "dist/doc/"
 };
+
+gulp.task('bower', function () {
+  gulp.src(sources.html)
+    .pipe(wiredep({
+      exclude: "www/lib/angular/angular.js"
+    }))
+    .pipe(gulp.dest(destinations.html));
+});
 
 var imageminJpegoptim = require('imagemin-jpegoptim');
 
@@ -124,7 +133,7 @@ gulp.task("coffee2js", function () {
 gulp.task('watch', function () {
   gulp.watch(sources.tests, ['test']);
   gulp.watch(sources.sass, ['sass2css']);
-  gulp.watch(sources.htmls, ['html']);
+  gulp.watch(sources.htmls, ['bower','html']);
   gulp.watch(sources.coffee, ['coffee2js', 'doc', 'test']);
   gulp.watch(sources.js, ['doc']);
 
@@ -141,6 +150,6 @@ gulp.task('doc', function () {
     .pipe(jsdoc(destinations.doc + 'doc/main-documentation'))
     .pipe(reload({stream: true}));
 });
-gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "browser-sync", "imagemin", "watch", "tdd", "doc"], function () {
+gulp.task("default", ["coffee2js", "sass2css", "lint", "bower", "browser-sync", "imagemin", "watch", "tdd", "doc"], function () {
   console.log("spartiiiii");
 });

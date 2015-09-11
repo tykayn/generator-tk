@@ -72,6 +72,7 @@
     "mocha": "~1.17.1",
     "phantomjs": "~1.9.12",
     "sinon": "~1.8.0",
+    "wiredep": "^3.0.0-beta",
     "yeoman-generator": "~0.19.2",
     "yosay": "^1.0.2"
   }
