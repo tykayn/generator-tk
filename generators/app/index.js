@@ -16,7 +16,7 @@ module.exports = yeoman.generators.Base.extend({
         this.log(yosay(
             'Welcome to the supreme ' + chalk.red('AngularJeej') + ' generator! Aint nobody got time for that?'
         ));
-        this.log('let\'s build the world');
+        this.log(chalk.green('let\'s build the world'));
         var prompts = [
             {
                 type: 'input',
@@ -120,5 +120,6 @@ module.exports = yeoman.generators.Base.extend({
 
     install: function () {
         this.installDependencies();
+        this.log(chalk.green('wala! enjoy your app!'));
     }
 });
