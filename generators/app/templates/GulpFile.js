@@ -27,6 +27,7 @@ var sources = {
   tests: "src/tests/*.js",
   sass: "src/sass/*.scss",
   html: "src/html/*.html",
+  html_wired: "src/html_wired/",
   htmls: "src/html/**/*.html",
   js: "src/scripts/*.js",
   jsAll: "src/scripts/**/*.js",
@@ -40,22 +41,8 @@ var destinations = {
   doc: "dist/doc/"
 };
 
-gulp.task('bower', function () {
-  gulp.src(sources.html)
-    .pipe(wiredep({
-      exclude: "www/lib/angular/angular.js"
-    }))
-    .pipe(gulp.dest(destinations.html));
-});
-gulp.task('vendor-scripts', function() {
-  return gulp.src(wiredep().js)
-    .pipe(gulp.dest(destinations.js));
-});
 
-gulp.task('vendor-css', function() {
-  return gulp.src(wiredep().css)
-    .pipe(gulp.dest(destinations.css));
-});
+
 
 var imageminJpegoptim = require('imagemin-jpegoptim');
 
@@ -65,12 +52,7 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task("html", function () {
-  console.log("html was changed");
-  gulp.src([sources.html, sources.htmls])
-    .pipe(gulp.dest(destinations.html))
-    .pipe(reload({stream: true}));
-});
+
 
 /**
  * Run test once and exit
@@ -143,7 +125,7 @@ gulp.task("coffee2js", function () {
 gulp.task('watch', function () {
   gulp.watch(sources.tests, ['test']);
   gulp.watch(sources.sass, ['sass2css']);
-  gulp.watch(sources.htmls, ['bower','html']);
+  gulp.watch(sources.htmls, ['html','wiredep']);
   gulp.watch(sources.coffee, ['coffee2js', 'doc', 'test']);
   gulp.watch(sources.js, ['doc']);
 
@@ -160,6 +142,27 @@ gulp.task('doc', function () {
     .pipe(jsdoc(destinations.doc + 'doc/main-documentation'))
     .pipe(reload({stream: true}));
 });
-gulp.task("default", ["coffee2js", "sass2css", "lint", "bower", "browser-sync", "imagemin", "watch", "tdd", "doc"], function () {
+
+gulp.task("html", function () {
+  console.log("html was changed");
+  gulp.src([sources.htmls,sources.html_wired])
+    .pipe(gulp.dest(destinations.html))
+    .pipe(reload({stream: true}));
+});
+gulp.task('bower', function () {
+  gulp.src(sources.html)
+    .pipe(wiredep({
+      exclude: "www/lib/angular/angular.js"
+    }))
+    .pipe(gulp.dest(destinations.html));
+});
+
+// link dependencies only on the main index
+gulp.task('wiredep', function() {
+  return gulp.src(sources.html)
+    .pipe(wiredep())
+    .pipe(gulp.dest(sources.html_wired));
+});
+gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "wiredep", "browser-sync", "imagemin","watch", "tdd", "doc"], function () {
   console.log("spartiiiii");
 });
