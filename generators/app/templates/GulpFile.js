@@ -58,19 +58,19 @@ gulp.task('test', function (done) {
     singleRun : true
   }, done);
 });
-gulp.task('cover', function (done) {
-  gulp.src([sources.jsAll, sources.js])
-    .pipe(istanbul()) // Covering files
-    .pipe(gulp.dest('test-tmp/'))
-    .pipe(istanbul.hookRequire()) // Force `require` to return covered files
-    .on('finish', function () {
-      gulp.src(['test/*.js'])
-        .pipe(mocha())
-        .pipe(istanbul.writeReports()) // Creating the reports after tests runned
-        .pipe(istanbul.enforceThresholds({thresholds: {global: 20}})) // Enforce a coverage of at least 90%
-        .on('end', done);
-    });
-});
+//gulp.task('cover', function (done) {
+//  gulp.src([sources.jsAll, sources.js])
+//    .pipe(istanbul()) // Covering files
+//    .pipe(gulp.dest('test-tmp/'))
+//    .pipe(istanbul.hookRequire()) // Force `require` to return covered files
+//    .on('finish', function () {
+//      gulp.src(['test/*.js'])
+//        .pipe(mocha())
+//        .pipe(istanbul.writeReports()) // Creating the reports after tests runned
+//        .pipe(istanbul.enforceThresholds({thresholds: {global: 20}})) // Enforce a coverage of at least 90%
+//        .on('end', done);
+//    });
+//});
 
 /**
  * Watch for file changes and re-run tests on each change
@@ -118,10 +118,12 @@ gulp.task("coffee2js", function () {
   console.log("coffee was served");
 });
 gulp.task('watch', function () {
+  gulp.watch('GulpFile.js', ['default']);
   gulp.watch(sources.tests, ['test']);
   gulp.watch(sources.sass, ['sass2css']);
   gulp.watch('bower.json', ['wiredep']);
-  gulp.watch(sources.htmls, ['html', 'wiredep']);
+  gulp.watch(sources.html, ['html_transform']);
+//  gulp.watch(sources.htmls, ['html','wiredep']);
   gulp.watch(sources.coffee, ['coffee2js', 'doc', 'test']);
   gulp.watch(sources.js, ['doc']);
 
@@ -138,29 +140,24 @@ gulp.task('doc', function () {
     .pipe(reload({stream: true}));
 });
 
-gulp.task("html", function () {
+gulp.task("html_transform", function () {
   console.log("html was changed");
   gulp.src([sources.htmls, sources.html])
     .pipe(gulp.dest(destinations.html))
     .pipe(reload({stream: true}));
-});
-gulp.task('bower', function () {
-  gulp.src(sources.html)
-    .pipe(wiredep({
-      exclude: "www/lib/angular/angular.js"
-    }))
-    .pipe(gulp.dest(destinations.html));
+  console.log("html regenerated");
 });
 
 // link dependencies only on the main index
-gulp.task('wiredep', function () {
-  gulp.src(sources.html)
+gulp.task('wiredep', ['html_transform'], function () {
+  console.log("wire dependencies from distant index");
+  gulp.src(sources.distIndex)
     .pipe(wiredep({
-      exclude: 'bower_components/angularjs'
+      directory: 'dist/bower_components'
     }))
     .pipe(gulp.dest(destinations.html))
   ;
 });
-gulp.task("default", ["coffee2js", "sass2css", "lint", "html", "wiredep", "browser-sync", "imagemin", "watch", "tdd", "doc"], function () {
+gulp.task("default", ["html_transform","coffee2js", "sass2css", "lint", "wiredep", "browser-sync", "imagemin", "watch", "tdd", "doc"], function () {
   console.log("spartiiiii");
 });
