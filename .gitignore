@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 npm-debug.log
 .idea/
+.idea/*
 node_modules/
 generators/app/templates/dist/bower_components/
 generators/app/templates/dist/doc
